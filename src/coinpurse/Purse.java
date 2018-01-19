@@ -1,5 +1,8 @@
 package coinpurse;
- 
+
+import java.util.ArrayList;
+import java.util.List;
+
 //TODO import List, ArrayList, and Collections
 // You will use Collections.sort() to sort the coins
 
@@ -13,7 +16,8 @@ package coinpurse;
 public class Purse {
     /** Collection of objects in the purse. */
     //TODO declare a List of Coins named "money".
-    
+    private List<Coin> money;
+	
     /** Capacity is maximum number of items the purse can hold.
      *  Capacity is set when the purse is created and cannot be changed.
      */
@@ -24,7 +28,8 @@ public class Purse {
      *  @param capacity is maximum number of coins you can put in purse.
      */
     public Purse( int capacity ) {
-
+    	this.capacity = capacity;
+    	money = new ArrayList<Coin>();
     }
 
     /**
@@ -32,14 +37,20 @@ public class Purse {
      * This is the number of coins, not their value.
      * @return the number of coins in the purse
      */
-    public int count() { return 0; }
+    public int count() { 
+    	return money.size();
+    }
     
     /** 
      *  Get the total value of all items in the purse.
      *  @return the total value of items in the purse.
      */
     public double getBalance() {
-		return 0.0; 
+    	double total = 0;
+    	for(Coin oneMoney : money) {
+    		total = total + oneMoney.getValue();
+    	}
+		return total; 
 	}
 
     
@@ -49,7 +60,7 @@ public class Purse {
      */
     //TODO write accessor method for capacity. Use Java naming convention.
     public int getCapacity() { 
-		return 0; 
+		return capacity; 
 	}
     
     /** 
@@ -60,7 +71,11 @@ public class Purse {
      */
     public boolean isFull() {
         //TODO complete this method. Avoid writing duplicate code (Don't Repeat Yourself).
-        return false;
+    	if(money.size() >= capacity) {
+    		return true;
+    	} else {
+    		return false;
+        }
     }
 
     /** 
@@ -73,7 +88,12 @@ public class Purse {
     public boolean insert( Coin coin ) {
         // if the purse is already full then can't insert anything.
         //TODO complete the insert method
-        return false;
+    	if(isFull() || coin.getValue() <= 0) {
+    		return false;
+    	} else {
+    		money.add(coin);
+    		return true;
+    	}
     }
     
     /**  
