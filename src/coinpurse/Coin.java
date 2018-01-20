@@ -7,8 +7,8 @@ package coinpurse;
  */
 public class Coin implements Comparable<Coin> {
 
-	private double value;
-	private String currency;
+	private final double value;
+	private final String currency;
 
 	public Coin(double value, String currency) {
 		if (value < 0) {

@@ -106,7 +106,8 @@ public class Purse {
      */
     public Coin[] withdraw( double amount ) {
         //TODO don't allow to withdraw amount < 0
-        
+    	
+    	
 	   /*
 		* See lab sheet for outline of a solution, 
 		* or devise your own solution.
@@ -126,11 +127,8 @@ public class Purse {
 		// Did we get the full amount?
 		// This code assumes you decrease amount each time you remove a coin.
     	// Your code might use some other variable for the remaining amount to withdraw.
-		if ( amountNeededToWithdraw != 0 )
-		{	
+		
 			// failed. Don't change the contents of the purse.
-			
-		}
 
 		// Success.
 		// Remove the coins you want to withdraw from purse,
