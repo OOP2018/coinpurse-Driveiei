@@ -7,9 +7,18 @@ package coinpurse;
  */
 public class Coin implements Comparable<Coin> {
 
+	/**The value of the coin*/
 	private final double value;
+	/**The currency of the coin*/
 	private final String currency;
 
+	/**
+	 * The value of the coin must not be negative.
+	 * If value of the coin less than zero, change the value of the coin to zero. 
+	 * 
+	 * @param value is value of a coin
+	 * @param currency is coin's currency
+	 * */
 	public Coin(double value, String currency) {
 		if (value < 0) {
 			this.value = 0;
@@ -37,6 +46,12 @@ public class Coin implements Comparable<Coin> {
 		return currency;
 	}
 
+	/**
+	 * Compare the 2 object of coins that have same value and currency or not.
+	 * 
+	 * @param arg is the object that use to compare with this object.
+	 * @return true if both objects have the same value and currency.
+	 * */
 	@Override
 	public boolean equals(Object arg) {
 		if (arg == null) {
@@ -49,6 +64,10 @@ public class Coin implements Comparable<Coin> {
 		return coin.getCurrency().equals(this.getCurrency()) && coin.getValue() == this.getValue();
 	}
 
+	/**
+	 * 
+	 * 
+	 * */
 	public int compareTo(Coin coin) {
 		double number = this.getValue() - coin.getValue();
 		if (number < 0) {
