@@ -154,6 +154,8 @@ public class Purse {
 	/**
 	 * toString returns a string description of the purse contents. It can return
 	 * whatever is a useful description.
+	 * 
+	 * @return many coins and values that are in purse.
 	 */
 	@Override
 	public String toString() {
