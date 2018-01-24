@@ -18,6 +18,7 @@ public class MoneyUtil {
 	 */
 	public static void main(String[] args) {
 		sortCoins();
+
 	}
 
 	/**
@@ -60,6 +61,9 @@ public class MoneyUtil {
 		System.out.printf("(%.0f-%s).comparedTo(%.0f-%s).\n", coins.get(4).getValue(), coins.get(4).getCurrency(),
 				coins.get(2).getValue(), coins.get(2).getCurrency());
 		System.out.printf("returned : %d\n", coins.get(4).compareTo(coins.get(2)));
+		filterByCurrency(coins,"Baht");
+		printCoins(coins);
+		
 	}
 
 	/**
@@ -81,12 +85,18 @@ public class MoneyUtil {
 	 * @return a list of coins with the same currency value.
 	 */
 	public static List<Coin> filterByCurrency(List<Coin> coins, String currency) {
-		coins = new ArrayList<>(coins);
+		List<Coin> toRemove = new ArrayList();
+		
 		for (Coin coin : coins) {
-			if (!coin.getCurrency().equals(currency)) {
-				coins.remove(coin);
-			}
+		    if (!coin.getCurrency().equals(currency)) {
+		        toRemove.add(coin);
+		    }
 		}
+
+		for (Coin coin : toRemove) {
+		    coins.remove(coin);
+		}
+		
 		return coins;
 	}
 
