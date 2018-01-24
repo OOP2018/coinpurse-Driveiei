@@ -102,20 +102,7 @@ public class Purse {
 		if (amount <= 0 || amount > getBalance() || count() == 0) {
 			return null;
 		}
-		/*
-		 * See lab sheet for outline of a solution, or devise your own solution. The
-		 * idea is to be greedy. Try to withdraw the largest coins possible. Each time
-		 * you choose a coin as a candidate for withdraw, add it to a temporary list and
-		 * decrease the amount (remainder) to withdraw.
-		 * 
-		 * If you reach a point where amountNeededToWithdraw == 0 then you found a
-		 * solution! Now, use the temporary list to remove coins from the money list,
-		 * and return the temporary list (as an array).
-		 */
-
-		// Did we get the full amount?
-		// This code assumes you decrease amount each time you remove a coin.
-		// Your code might use some other variable for the remaining amount to withdraw.
+		
 		double amountNeededToWithdraw = amount;
 		List<Coin> templist = new ArrayList<Coin>();
 		java.util.Collections.sort(money);
@@ -133,17 +120,12 @@ public class Purse {
 					templist.removeAll(templist);
 				}
 			}
-
 		}
-		// failed. Don't change the contents of the purse.
+		
 		if (amountNeededToWithdraw != 0) {
 			return null;
 		}
-		// Success.
-		// Remove the coins you want to withdraw from purse,
-		// and return them as an array.
-		// Use list.toArray( array[] ) to copy a list into an array.
-		// toArray returns a reference to the array itself.
+		
 		for (int i = 0; i < templist.size(); i++) {
 			money.remove(templist.get(i));
 		}
