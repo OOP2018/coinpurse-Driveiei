@@ -29,16 +29,16 @@ public class Coin implements Valuable {
 	}
 
 	/**
-	 * Get the coin's value
+	 * Get the coin's value.
 	 * 
-	 * @return the coin's value
+	 * @return the coin's value.
 	 */
 	public double getValue() {
 		return value;
 	}
 
 	/**
-	 * Get the coin's currency.
+	 * Get the coin's currency
 	 * 
 	 * @return the coin's currency
 	 */
@@ -67,8 +67,7 @@ public class Coin implements Valuable {
 	/**
 	 * Compare 2 object of coins to sort them into the order by the value of them.
 	 * 
-	 * @param coin
-	 *            is the object that want to compare with this object.
+	 * @param coin is the object that want to compare with this object.
 	 * @return -1(negative integer) if this object has order before other object.
 	 *         0(zero) if this object and other object have the same order.
 	 *         1(positive integer) if this object has order after other object.
@@ -85,9 +84,9 @@ public class Coin implements Valuable {
 	}
 
 	/**
-	 * toString describes the game or problem.
+	 * toString describes value and currency of coin.
 	 * 
-	 * @return description of this game or the problem to be solved.
+	 * @return description of this coin.
 	 */
 	@Override
 	public String toString() {

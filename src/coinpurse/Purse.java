@@ -75,8 +75,8 @@ public class Purse {
 	}
 
 	/**
-	 * Insert a value into the purse. The coin is only inserted if the purse has
-	 * space for it and the coin has positive value. No worthless coins!
+	 * Insert a value into the purse. The valuable is only inserted if the purse has
+	 * space for it and the coin has positive value. No worthless valuables!
 	 * 
 	 * @param value is a Valuable object to insert into purse.
 	 * @return true if value inserted, false if can't insert.
@@ -96,7 +96,7 @@ public class Purse {
 	 * from purse, or return null if cannot withdraw the amount requested.
 	 * 
 	 * @param amount is the amount to withdraw
-	 * @return array of Valuable objects for money withdrawn, or null if cannot withdraw
+	 * @return array of valuable objects for money withdrawn, or null if cannot withdraw
 	 *         requested amount.
 	 */
 	public Valuable[] withdraw(double amount) {

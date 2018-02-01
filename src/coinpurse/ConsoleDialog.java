@@ -95,7 +95,7 @@ public class ConsoleDialog {
 
 	/**
 	 * Ask how much money (Baht) to withdraw and then do it. After withdraw, show
-	 * the values of the coins we withdrew.
+	 * the values of the valuable we withdrew.
 	 */
 	public void withdrawDialog() {
 		// Check to see if user typed amount to withdraw on the same line as "w".

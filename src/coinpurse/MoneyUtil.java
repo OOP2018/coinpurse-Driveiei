@@ -5,7 +5,7 @@ import java.util.Comparator;
 import java.util.List;
 
 /**
- * MoneyUtil class use to sort the coins, print list of coins, separate the same
+ * MoneyUtil class use to sort the coins or banknotes, print list of values, separate the same
  * currency, test sort and comparedTo method.
  * 
  * @author Kornphon Noiprasert
@@ -24,7 +24,7 @@ public class MoneyUtil {
 	}
 
 	/**
-	 * Demonstrate that compareTo() method and sort by value of coins are correct.
+	 * Demonstrate that compareTo() method and sort by value of coins are correct including filterByCurrency.
 	 */
 	public static void sortCoins() {
 		List<Coin> coins = new ArrayList<Coin>();
@@ -60,17 +60,17 @@ public class MoneyUtil {
 				coins.get(1).getValue(), coins.get(1).getCurrency());
 		System.out.printf("returned : %d\n", coins.get(2).compareTo(coins.get(1)));
 		// case 3. value a and b have same order. (result : 0).
-		// (1-Rupie).compareTo(1-Baht).
-		System.out.printf("(%.0f-%s).comparedTo(%.0f-%s).\n", coins.get(4).getValue(), coins.get(4).getCurrency(),
-				coins.get(2).getValue(), coins.get(2).getCurrency());
-		System.out.printf("returned : %d\n", coins.get(4).compareTo(coins.get(2)));
+		// (1-Rupie).compareTo(1-Rupie).
+		System.out.printf("(%.0f-%s).comparedTo(%.0f-%s).\n", coins.get(7).getValue(), coins.get(7).getCurrency(),
+				coins.get(8).getValue(), coins.get(8).getCurrency());
+		System.out.printf("returned : %d\n", coins.get(7).compareTo(coins.get(8)));
 		System.out.println("==================End Coins====================");
+		System.out.println("===Start test filter and sort===");
 		List<Valuable> values = new ArrayList<Valuable>();
 		values.addAll(coins);
 		sortValues(values);
 		filterByCurrency(values, "Baht");
-		sortValues(values);
-		System.out.println("=========After filt========");
+		System.out.println("=========After filter========");
 		printValues(values);
 		
 	}
@@ -89,7 +89,7 @@ public class MoneyUtil {
 	/**
 	 * Print a list of values.
 	 * 
-	 * @param coins is list of values with many currency values.
+	 * @param values is a list of values with many currency values.
 	 */
 	public static void printValues(List<Valuable> values) {
 		for (Valuable oneValue : values) {
@@ -100,30 +100,27 @@ public class MoneyUtil {
 	/**
 	 * Filter coins by use the specified currency value of the coins.
 	 * 
-	 * @param coins is list of coins with many currency values.
+	 * @param values is a list of values with many currency values.
 	 * @param currency is currency value.
-	 * @return a list of coins with the same currency value.
+	 * @return a list of values with the same currency value.
 	 */
 	public static List<Valuable> filterByCurrency(List<Valuable> values, String currency) {
 		List<Valuable> toRemove = new ArrayList<Valuable>();
-		
 		for (Valuable value : values) {
 		    if (!value.getCurrency().equals(currency)) {
 		        toRemove.add(value);
 		    }
 		}
-
 		for (Valuable value : toRemove) {
 		    values.remove(value);
 		}
-		
 		return values;
 	}
 
 	/**
-	 * Sort all coins by using value of coins to sort and print a list of coins.
+	 * Sort all values by using value of coin or bank to sort and print a list of values.
 	 * 
-	 * @param coins is list of coins with many currency values.
+	 * @param values is list of coins or banknotes with many currency values.
 	 */
 	public static void sortValues(List<Valuable> values) {
 		java.util.Collections.sort(values,comp);
