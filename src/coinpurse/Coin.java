@@ -5,7 +5,7 @@ package coinpurse;
  * 
  * @author Kornphon Noiprasert
  */
-public class Coin implements Comparable<Coin> {
+public class Coin implements Valuable {
 
 	/** The value of the coin */
 	private final double value;

@@ -20,5 +20,5 @@ public class Main {
 		ConsoleDialog ui = new ConsoleDialog(purse);
 		// 3. run the ConsoleDialog
 		ui.run();
-	}
+		}
 }
