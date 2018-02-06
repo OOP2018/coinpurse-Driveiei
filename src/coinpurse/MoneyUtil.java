@@ -67,12 +67,12 @@ public class MoneyUtil {
 		System.out.println("==================End Coins====================");
 		System.out.println("===Start test filter and sort===");
 		List<Valuable> values = new ArrayList<Valuable>();
+		List<Valuable> afterFilter = new ArrayList<Valuable>();
 		values.addAll(coins);
 		sortValues(values);
-		filterByCurrency(values, "Baht");
+		afterFilter = filterByCurrency(values, "Baht");
 		System.out.println("=========After filter========");
-		printValues(values);
-		
+		printValues(afterFilter);
 	}
 
 	/**
@@ -111,10 +111,12 @@ public class MoneyUtil {
 		        toRemove.add(value);
 		    }
 		}
+		List<Valuable> copy = new ArrayList<Valuable>();
+		copy.addAll(values);
 		for (Valuable value : toRemove) {
-		    values.remove(value);
+		    copy.remove(value);
 		}
-		return values;
+		return copy;
 	}
 
 	/**

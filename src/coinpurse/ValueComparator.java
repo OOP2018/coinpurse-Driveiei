@@ -5,7 +5,7 @@ import java.util.Comparator;
 /*
  * Compare two valuables and define which one has more value than other.
  * 
- * @author  Kornphon Noiprasert
+ * @author Kornphon Noiprasert
  * */
 public class ValueComparator implements Comparator<Valuable> {
 

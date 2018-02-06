@@ -15,6 +15,7 @@ import java.util.Comparator;
 public class Purse {
 	/** Collection of objects in the purse. */
 	private List<Valuable> money;
+	private Comparator<Valuable> comp = new ValueComparator();
 
 	/**
 	 * Capacity is maximum number of items the purse can hold. Capacity is set when
@@ -106,7 +107,6 @@ public class Purse {
 		
 		double amountNeededToWithdraw = amount;
 		List<Valuable> templist = new ArrayList<Valuable>();
-		Comparator<Valuable> comp = new ValueComparator();
 		java.util.Collections.sort(money , comp);
 		for (int j = 0; j < money.size(); j++) {
 			for (int i = money.size() - (j + 1); i >= 0; i--) {
