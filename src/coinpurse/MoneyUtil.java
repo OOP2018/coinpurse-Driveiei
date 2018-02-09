@@ -112,18 +112,14 @@ public class MoneyUtil {
 	 * @return a list of values with the same currency value.
 	 */
 	public static List<Valuable> filterByCurrency(List<Valuable> values, String currency) {
-		List<Valuable> toRemove = new ArrayList<Valuable>();
+		List<Valuable> toReturn = new ArrayList<Valuable>();
+		toReturn.addAll(values);
 		for (Valuable value : values) {
 			if (!value.getCurrency().equals(currency)) {
-				toRemove.add(value);
+				toReturn.remove(value);
 			}
 		}
-		List<Valuable> copy = new ArrayList<Valuable>();
-		copy.addAll(values);
-		for (Valuable value : toRemove) {
-			copy.remove(value);
-		}
-		return copy;
+		return toReturn;
 	}
 
 	/**
