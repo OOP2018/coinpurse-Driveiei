@@ -135,6 +135,43 @@ public class Purse {
 		return templist.toArray(changeToArray);
 	}
 
+	public Valuable[] withdraw(Valuable amount) {
+		if (amount.getValue() <= 0 || amount.getValue() > getBalance() || count() == 0) {
+			return null;
+		}
+		
+		double amountNeededToWithdraw = amount.getValue();
+		List<Valuable> templist = new ArrayList<Valuable>();
+		Collections.sort(money , comp);
+		for (int j = 0; j < money.size(); j++) {
+			for (int i = money.size() - (j + 1); i >= 0; i--) {
+				if(amount.getCurrency().equals(money.get(i).getCurrency())) {
+					if (amountNeededToWithdraw >= money.get(i).getValue()) {
+						amountNeededToWithdraw -= money.get(i).getValue();
+						templist.add(money.get(i));
+					}
+					if (amountNeededToWithdraw == 0) {
+						break;
+					}
+					if (money.get(i).getValue() == money.get(0).getValue()) {
+						amountNeededToWithdraw = amount.getValue();
+						templist.clear();
+					}
+				}
+			}
+		}
+		
+		if (amountNeededToWithdraw != 0) {
+			return null;
+		}
+		
+		for (int i = 0; i < templist.size(); i++) {
+			money.remove(templist.get(i));
+		}
+		Valuable[] changeToArray = new Valuable[templist.size()];
+		return templist.toArray(changeToArray);
+	}
+	
 	/**
 	 * toString returns a string description of the purse contents. It can return
 	 * whatever is a useful description.

@@ -78,6 +78,7 @@ public class MoneyUtil {
 		sortValues(values);
 		afterFilter = filterByCurrency(values, "Baht");
 		System.out.println("=========After filter========");
+		System.out.println("---Only Baht---");
 		printValues(afterFilter);
 	}
 
