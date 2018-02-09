@@ -43,7 +43,7 @@ public class MoneyUtil {
 		// test for same value but, different currency.
 		coins.add(new Coin(20.0, "Rupie"));
 		// test if value less than 0
-		coins.add(new Coin(-50, "Rupie"));
+		coins.add(new Coin(0.5, "Rupie"));
 		printCoins(coins);
 		System.out.println("===After Sort===");
 		java.util.Collections.sort(coins, comp);

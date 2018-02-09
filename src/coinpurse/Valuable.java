@@ -5,7 +5,7 @@ package coinpurse;
 * 
 * @author Kornphon Noiprasert
 */
-public interface Valuable {
+public interface Valuable extends Comparable<Valuable>{
 	
 	/**
 	 * Get the objects's value.

@@ -107,7 +107,7 @@ public class Purse {
 		
 		double amountNeededToWithdraw = amount;
 		List<Valuable> templist = new ArrayList<Valuable>();
-		java.util.Collections.sort(money , comp);
+		Collections.sort(money , comp);
 		for (int j = 0; j < money.size(); j++) {
 			for (int i = money.size() - (j + 1); i >= 0; i--) {
 				if (amountNeededToWithdraw >= money.get(i).getValue()) {
@@ -119,7 +119,7 @@ public class Purse {
 				}
 				if (money.get(i).getValue() == money.get(0).getValue()) {
 					amountNeededToWithdraw = amount;
-					templist.removeAll(templist);
+					templist.clear();
 				}
 			}
 		}

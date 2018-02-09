@@ -6,11 +6,9 @@ package coinpurse;
  * 
  * @author Kornphon Noiprasert
  */
-public class BankNote implements Valuable {
+public class BankNote extends Money implements Valuable {
 
 	private static long nextSerialNumber = 1000000;
-	private double value;
-	private String currency;
 	private long serialNumber;
 
 	/**
@@ -21,30 +19,9 @@ public class BankNote implements Valuable {
 	 * @param currency is banknote's currency.
 	 */
 	public BankNote(double value, String currency) {
-		this.value = value;
-		this.currency = currency;
+		super(value,currency);
 		this.serialNumber = nextSerialNumber;
 		nextSerialNumber++;
-	}
-
-	/**
-	 * Get the banknote's value.
-	 * 
-	 * @return the banknote's value.
-	 */
-	@Override
-	public double getValue() {
-		return value;
-	}
-
-	/**
-	 * Get the banknote's currency.
-	 * 
-	 * @return the banknote's currency.
-	 */
-	@Override
-	public String getCurrency() {
-		return currency;
 	}
 
 	/**
@@ -57,34 +34,16 @@ public class BankNote implements Valuable {
 	}
 
 	/**
-	 * Compare 2 object of banknote that have same value and currency or not.
-	 * 
-	 * @param arg is the object that use to compare with this object.
-	 * @return true if both objects have the same value and currency.
-	 */
-	@Override
-	public boolean equals(Object arg) {
-		if (arg == null) {
-			return false;
-		}
-		if (arg.getClass() != this.getClass()) {
-			return false;
-		}
-		BankNote bank = (BankNote) arg;
-		return bank.getCurrency().equals(this.getCurrency()) && bank.getValue() == this.getValue();
-	}
-
-	/**
 	 * toString describes value and currency of banknote.
 	 * 
 	 * @return description of this banknote.
 	 */
 	@Override
 	public String toString() {
-		if (this.value % 1 == 0)
-			return String.format("%.0f-%s note [%d].", value, currency, serialNumber);
+		if (this.getValue() % 1 == 0)
+			return String.format("%.0f-%s note [%d].", this.getValue(), this.getCurrency(), serialNumber);
 		else
-			return String.format("%.2f-%s note [%d].", value, currency, serialNumber);
+			return String.format("%.2f-%s note [%d].", this.getValue(), this.getCurrency(), serialNumber);
 	}
 
 }
