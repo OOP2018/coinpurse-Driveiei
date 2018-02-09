@@ -8,8 +8,7 @@ package coinpurse;
 public class Coin extends Money {
 	
 	/**
-	 * The value of the coin must not be negative. If value of the coin less than
-	 * zero, change the value of the coin to zero.
+	 * Create Coin with currency and value.
 	 * 
 	 * @param value is value of a coin
 	 * @param currency is coin's currency

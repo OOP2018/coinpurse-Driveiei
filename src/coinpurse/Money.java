@@ -1,21 +1,43 @@
 package coinpurse;
 
+/**
+ * Money represents production contains fixed value and currency which are
+ * supports Coin and BankNote, and can order money 
+ * 
+ * @author Kornphon Noiprasert
+ */
 public class Money implements Valuable {
 
 	private double value;
 	private String currency;
 	
+	/**
+	 * Create Money with currency and value. The value cann't less than 0.
+	 * 
+	 * @param value is value of a Money.
+	 * @param currency is Money's currency.
+	 */
 	public Money(double value , String currency) {
 		if(value < 0) throw new IllegalArgumentException ("Money value must be more than 0");
 		this.value = value;
 		this.currency = currency;
 	}
-
+	
+	/**
+	 * Get the money's value.
+	 * 
+	 * @return the money's value.
+	 */
 	@Override
 	public double getValue() {
 		return value;
 	}
 
+	/**
+	 * Get the money's currency.
+	 * 
+	 * @return the money's currency.
+	 */
 	@Override
 	public String getCurrency() {
 		return currency;

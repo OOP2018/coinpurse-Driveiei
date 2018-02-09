@@ -190,7 +190,7 @@ public class PurseTest {
 	}
 	
 	@Test(timeout = 1000)
-	public void testValuableWithdraw() {
+	public void testManyCurrency() {
 		Purse purse = new Purse(6);
 		purse.insert(new Money(20, "Baht"));
 		purse.insert(new Money(30, "Yen"));
@@ -200,16 +200,40 @@ public class PurseTest {
 		purse.insert(new Money(20, "USD"));
 		//must not insert
 		purse.insert(new Money(20, "USD"));
-		
 		assertEquals(155, purse.getBalance(), TOL);
+		//with draw 20 and 35 Baht (2 values from 3).
 		purse.withdraw(new Money(55,"Baht"));
 		assertEquals(100, purse.getBalance(), TOL);
+		//Exceed Money
 		purse.withdraw(new Money(40,"USD"));
 		assertEquals(100, purse.getBalance(), TOL);
+		//Withdraw all values in one currency
 		purse.withdraw(new Money(40,"Yen"));
 		assertEquals(60, purse.getBalance(),TOL);
+		//Withdraw 1 value.
 		purse.withdraw(new Money(20,"USD"));
 		assertEquals(40, purse.getBalance(),TOL);
+		
+		Purse purseTwo = new Purse(8);
+		purseTwo.insert(new Money(20, "Baht"));
+		purseTwo.insert(new Money(20, "Baht"));
+		purseTwo.insert(new Money(20, "baht"));
+		purseTwo.insert(new Money(20, "baht"));
+		purseTwo.insert(new Money(50, "baht"));
+		purseTwo.insert(new Money(10, "yen"));
+		purseTwo.insert(new Money(10, "Yen"));
+		purseTwo.insert(new Money(10, "Yen"));
+		//Withdraw exceed money.
+		purseTwo.withdraw(new Money(100,"Baht"));
+		assertEquals(160, purseTwo.getBalance(), TOL);
+		//Withdraw test capital alphabets.
+		purseTwo.withdraw(new Money(30,"Yen"));
+		assertEquals(130, purseTwo.getBalance(), TOL);
+		
+		purseTwo.withdraw(new Money(40,"baht"));
+		assertEquals(90, purseTwo.getBalance(), TOL);
+		purseTwo.withdraw(new Money(90,"baht"));
+		assertEquals(0, purseTwo.getBalance(), TOL);
 	}
 	
 	@Test(timeout = 1000)

@@ -108,8 +108,9 @@ public class Purse {
 		double amountNeededToWithdraw = amount;
 		List<Valuable> templist = new ArrayList<Valuable>();
 		Collections.sort(money , comp);
-		for (int j = 0; j < money.size(); j++) {
-			for (int i = money.size() - (j + 1); i >= 0; i--) {
+		int size = money.size();
+		for (int j = 0; j < size; j++) {
+			for (int i = size - (j + 1); i >= 0; i--) {
 				if (amountNeededToWithdraw >= money.get(i).getValue()) {
 					amountNeededToWithdraw -= money.get(i).getValue();
 					templist.add(money.get(i));
@@ -117,9 +118,12 @@ public class Purse {
 				if (amountNeededToWithdraw == 0) {
 					break;
 				}
-				if (money.get(i).getValue() == money.get(0).getValue()) {
+				if (size == 1) {
 					amountNeededToWithdraw = amount;
 					templist.clear();
+					size = money.size();
+				} else {
+					size--;
 				}
 			}
 		}
@@ -135,32 +139,48 @@ public class Purse {
 		return templist.toArray(changeToArray);
 	}
 
+	/**
+	 * Withdraw the requested amount of money. Return an array of Valuable withdrawn
+	 * from purse, or return null if cannot withdraw the amount requested.
+	 * 
+	 * @param amount is the amount to withdraw that must have the same currency with the purse.
+	 * @return array of valuable objects for money withdrawn, or null if cannot withdraw
+	 *         requested amount.
+	 */
 	public Valuable[] withdraw(Valuable amount) {
 		if (amount.getValue() <= 0 || amount.getValue() > getBalance() || count() == 0) {
 			return null;
 		}
-		
 		double amountNeededToWithdraw = amount.getValue();
 		List<Valuable> templist = new ArrayList<Valuable>();
 		Collections.sort(money , comp);
-		for (int j = 0; j < money.size(); j++) {
-			for (int i = money.size() - (j + 1); i >= 0; i--) {
-				if(amount.getCurrency().equals(money.get(i).getCurrency())) {
-					if (amountNeededToWithdraw >= money.get(i).getValue()) {
-						amountNeededToWithdraw -= money.get(i).getValue();
-						templist.add(money.get(i));
+		
+		List<Valuable> calculate = new ArrayList<Valuable>();
+		for(Valuable oneValue : money) {
+			if(amount.getCurrency().equalsIgnoreCase(oneValue.getCurrency())) {
+				calculate.add(oneValue);
+			}
+		}
+		int size = calculate.size();
+		for (int j = 0; j < size; j++) {
+			for (int i = size - (j + 1); i >= 0; i--) {
+					if (amountNeededToWithdraw >= calculate.get(i).getValue()) {
+						amountNeededToWithdraw -= calculate.get(i).getValue();
+						templist.add(calculate.get(i));
 					}
 					if (amountNeededToWithdraw == 0) {
 						break;
 					}
-					if (money.get(i).getValue() == money.get(0).getValue()) {
+					if (size == 1) {
 						amountNeededToWithdraw = amount.getValue();
 						templist.clear();
+						size = calculate.size();
+					} else {
+						size--;
 					}
-				}
 			}
 		}
-		
+
 		if (amountNeededToWithdraw != 0) {
 			return null;
 		}
