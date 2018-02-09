@@ -179,6 +179,40 @@ public class PurseTest {
 	}
 
 	@Test(timeout = 1000)
+	public void testWithdrawValuable() {
+		Purse purse = new Purse(5);
+		purse.insert(new Money(20, "Baht"));
+		assertEquals(20, purse.getBalance(), TOL);
+		purse.withdraw(new Money(20, "Yen"));
+		assertEquals(20, purse.getBalance(), TOL);
+		purse.withdraw(new Money(20,"Baht"));
+		assertEquals(0, purse.getBalance(),TOL);
+	}
+	
+	@Test(timeout = 1000)
+	public void testValuableWithdraw() {
+		Purse purse = new Purse(6);
+		purse.insert(new Money(20, "Baht"));
+		purse.insert(new Money(30, "Yen"));
+		purse.insert(new Money(35,"Baht"));
+		purse.insert(new Money(10, "Yen"));
+		purse.insert(new Money(40, "Baht"));
+		purse.insert(new Money(20, "USD"));
+		//must not insert
+		purse.insert(new Money(20, "USD"));
+		
+		assertEquals(155, purse.getBalance(), TOL);
+		purse.withdraw(new Money(55,"Baht"));
+		assertEquals(100, purse.getBalance(), TOL);
+		purse.withdraw(new Money(40,"USD"));
+		assertEquals(100, purse.getBalance(), TOL);
+		purse.withdraw(new Money(40,"Yen"));
+		assertEquals(60, purse.getBalance(),TOL);
+		purse.withdraw(new Money(20,"USD"));
+		assertEquals(40, purse.getBalance(),TOL);
+	}
+	
+	@Test(timeout = 1000)
 	public void testImpossibleWithdraw() {
 		Purse purse = new Purse(10);
 		assertNull(purse.withdraw(1));
