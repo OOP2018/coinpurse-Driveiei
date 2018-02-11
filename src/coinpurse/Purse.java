@@ -140,7 +140,7 @@ public class Purse {
 	}
 
 	/**
-	 * Withdraw the requested amount of money. Return an array of Valuable withdrawn
+	 * Withdraw the requested amount of money with fixed currency. Return an array of Valuable withdrawn
 	 * from purse, or return null if cannot withdraw the amount requested.
 	 * 
 	 * @param amount is the amount to withdraw that must have the same currency with the purse.
