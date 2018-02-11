@@ -164,20 +164,20 @@ public class Purse {
 		int size = calculate.size();
 		for (int j = 0; j < size; j++) {
 			for (int i = size - (j + 1); i >= 0; i--) {
-					if (amountNeededToWithdraw >= calculate.get(i).getValue()) {
-						amountNeededToWithdraw -= calculate.get(i).getValue();
-						templist.add(calculate.get(i));
-					}
-					if (amountNeededToWithdraw == 0) {
-						break;
-					}
-					if (size == 1) {
-						amountNeededToWithdraw = amount.getValue();
-						templist.clear();
-						size = calculate.size();
-					} else {
-						size--;
-					}
+				if (amountNeededToWithdraw >= calculate.get(i).getValue()) {
+					amountNeededToWithdraw -= calculate.get(i).getValue();
+					templist.add(calculate.get(i));
+				}
+				if (amountNeededToWithdraw == 0) {
+					break;
+				}
+				if (size == 1) {
+					amountNeededToWithdraw = amount.getValue();
+					templist.clear();
+					size = calculate.size();
+				} else {
+					size--;
+				}
 			}
 		}
 
