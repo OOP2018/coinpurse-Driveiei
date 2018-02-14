@@ -22,7 +22,7 @@ import org.junit.Test;
 public class PurseTest {
 	/** tolerance for comparing two double values */
 	private static final double TOL = 1.0E-6;
-	private static final String CURRENCY = "BTC";
+	private static final String CURRENCY = "Baht";
 
 	/**
 	 * Sets up the test fixture. Called before every test method.
@@ -138,7 +138,6 @@ public class PurseTest {
 		double amount1 = coins[1].getValue() + coins[3].getValue();
 		double amount2 = coins[0].getValue() + coins[2].getValue();
 		assertEquals(amount1 + amount2, purse.getBalance(), TOL);
-
 		Valuable[] wd1 = purse.withdraw(amount1);
 		assertEquals(amount1, sum(wd1), TOL);
 
@@ -179,7 +178,7 @@ public class PurseTest {
 	}
 
 	@Test(timeout = 1000)
-	public void testWithdrawValuable() {
+	public void testCurrencyValuable() {
 		Purse purse = new Purse(5);
 		purse.insert(new Money(20, "Baht"));
 		assertEquals(20, purse.getBalance(), TOL);
@@ -247,7 +246,7 @@ public class PurseTest {
 		purse.insert(makeCoin(20)); // now it has 20 + 20
 		assertNull(purse.withdraw(30));
 	}
-
+	
 	/**
 	 * Sum the value of some coins.
 	 * 
