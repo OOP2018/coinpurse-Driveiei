@@ -17,6 +17,7 @@ public class ConsoleDialog {
 	// Shorter prompt shown subsequently
 	final String SHORT_PROMPT = "\nEnter d, w, ?, or q: ";
 
+	private MoneyFactory factory = MoneyFactory.getInstance();
 	// The dialog receives a Purse object by dependency injection (as parameter to
 	// constructor)
 	// so don't create a Purse here.
@@ -25,7 +26,8 @@ public class ConsoleDialog {
 	/**
 	 * Initialize a new Purse dialog.
 	 * 
-	 * @param purse is the Purse to interact with.
+	 * @param purse
+	 *            is the Purse to interact with.
 	 */
 	public ConsoleDialog(Purse purse) {
 		this.purse = purse;
@@ -84,6 +86,7 @@ public class ConsoleDialog {
 		while (scanline.hasNextDouble()) {
 			double value = scanline.nextDouble();
 			Valuable valuable = makeMoney(value);
+			if(valuable == null) continue;
 			System.out.printf("Deposit %s... ", valuable.toString());
 			boolean ok = purse.insert(valuable);
 			System.out.println((ok ? "ok" : "FAILED"));
@@ -127,8 +130,12 @@ public class ConsoleDialog {
 
 	/** Make a Coin (or BankNote or whatever) using requested value. */
 	private Valuable makeMoney(double value) {
-		if(value < 20) return new Coin(value, CURRENCY);
-		else return new BankNote(value, CURRENCY);
+		Valuable valuable = null;
+		try {
+			valuable = factory.createMoney(value);
+		} catch (IllegalArgumentException ex) {
+			System.out.println("Sorry, " + value + " is not a valid amount.");
+		}
+		return valuable;
 	}
-
 }
