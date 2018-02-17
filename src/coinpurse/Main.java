@@ -9,7 +9,7 @@ import java.util.ResourceBundle;
  * @author Kornphon Noiprasert
  */
 public class Main {
-	
+
 	/**
 	 * Configure and start the application.
 	 * 
@@ -26,8 +26,7 @@ public class Main {
 	}
 
 	/**
-	 * This method gets instance from a file(purse) class
-	 * and keeps into factory.
+	 * This method gets instance from a file(purse) class and keeps into factory.
 	 */
 	public static void init() {
 		ResourceBundle bundle = ResourceBundle.getBundle("purse");

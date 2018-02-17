@@ -162,7 +162,8 @@ public class PurseTest {
 		Purse purse = new Purse(10);
 		// Coins we want to insert and then withdraw.
 		// Use values such that greedy will succeed, but not monotonic
-		List<Valuable> coins = Arrays.asList(makeMoney(1.0), makeMoney(0.5), makeMoney(10.0), makeMoney(0.25), makeMoney(5.0));
+		List<Valuable> coins = Arrays.asList(makeMoney(1.0), makeMoney(0.5), makeMoney(10.0), makeMoney(0.25),
+				makeMoney(5.0));
 		// num = number of coins to insert and then withdraw
 		for (int num = 1; num <= coins.size(); num++) {
 			double amount = 0.0;
@@ -192,35 +193,35 @@ public class PurseTest {
 		assertEquals(20, purse.getBalance(), TOL);
 		purse.withdraw(new Money(20, "Yen"));
 		assertEquals(20, purse.getBalance(), TOL);
-		purse.withdraw(new Money(20,"Baht"));
-		assertEquals(0, purse.getBalance(),TOL);
+		purse.withdraw(new Money(20, "Baht"));
+		assertEquals(0, purse.getBalance(), TOL);
 	}
-	
+
 	@Test(timeout = 1000)
 	public void testManyCurrency() {
 		Purse purse = new Purse(6);
 		purse.insert(new Money(20, "Baht"));
 		purse.insert(new Money(30, "Yen"));
-		purse.insert(new Money(35,"Baht"));
+		purse.insert(new Money(35, "Baht"));
 		purse.insert(new Money(10, "Yen"));
 		purse.insert(new Money(40, "Baht"));
 		purse.insert(new Money(20, "USD"));
-		//must not insert
+		// must not insert
 		purse.insert(new Money(20, "USD"));
 		assertEquals(155, purse.getBalance(), TOL);
-		//with draw 20 and 35 Baht (2 values from 3).
-		purse.withdraw(new Money(55,"Baht"));
+		// with draw 20 and 35 Baht (2 values from 3).
+		purse.withdraw(new Money(55, "Baht"));
 		assertEquals(100, purse.getBalance(), TOL);
-		//Exceed Money
-		purse.withdraw(new Money(40,"USD"));
+		// Exceed Money
+		purse.withdraw(new Money(40, "USD"));
 		assertEquals(100, purse.getBalance(), TOL);
-		//Withdraw all values in one currency
-		purse.withdraw(new Money(40,"Yen"));
-		assertEquals(60, purse.getBalance(),TOL);
-		//Withdraw 1 value.
-		purse.withdraw(new Money(20,"USD"));
-		assertEquals(40, purse.getBalance(),TOL);
-		
+		// Withdraw all values in one currency
+		purse.withdraw(new Money(40, "Yen"));
+		assertEquals(60, purse.getBalance(), TOL);
+		// Withdraw 1 value.
+		purse.withdraw(new Money(20, "USD"));
+		assertEquals(40, purse.getBalance(), TOL);
+
 		Purse purseTwo = new Purse(8);
 		purseTwo.insert(new Money(20, "Baht"));
 		purseTwo.insert(new Money(20, "Baht"));
@@ -230,19 +231,19 @@ public class PurseTest {
 		purseTwo.insert(new Money(10, "yen"));
 		purseTwo.insert(new Money(10, "Yen"));
 		purseTwo.insert(new Money(10, "Yen"));
-		//Withdraw exceed money.
-		purseTwo.withdraw(new Money(100,"Baht"));
+		// Withdraw exceed money.
+		purseTwo.withdraw(new Money(100, "Baht"));
 		assertEquals(160, purseTwo.getBalance(), TOL);
-		//Withdraw test capital alphabets.
-		purseTwo.withdraw(new Money(30,"Yen"));
+		// Withdraw test capital alphabets.
+		purseTwo.withdraw(new Money(30, "Yen"));
 		assertEquals(130, purseTwo.getBalance(), TOL);
-		
-		purseTwo.withdraw(new Money(40,"baht"));
+
+		purseTwo.withdraw(new Money(40, "baht"));
 		assertEquals(90, purseTwo.getBalance(), TOL);
-		purseTwo.withdraw(new Money(90,"baht"));
+		purseTwo.withdraw(new Money(90, "baht"));
 		assertEquals(0, purseTwo.getBalance(), TOL);
 	}
-	
+
 	@Test(timeout = 1000)
 	public void testImpossibleWithdraw() {
 		Purse purse = new Purse(10);
@@ -254,7 +255,7 @@ public class PurseTest {
 		purse.insert(makeMoney(20)); // now it has 20 + 20
 		assertNull(purse.withdraw(30));
 	}
-	
+
 	@Test(timeout = 1000)
 	public void testBankNote() {
 		Purse purse = new Purse(10);
@@ -262,11 +263,12 @@ public class PurseTest {
 		Valuable b = factory.createMoney(50);
 		Valuable c = makeMoney(20);
 	}
-	
+
 	/**
 	 * Sum the value of some coins.
 	 * 
-	 * @param value array of coins
+	 * @param value
+	 *            array of coins
 	 * @return sum of values of the coins
 	 */
 	private double sum(Valuable[] value) {

@@ -16,8 +16,8 @@ public class MoneyFactoryTest {
 	private MoneyFactory factory = MoneyFactory.getInstance();
 
 	/**
-	* Test that MoneyFactory can get when it's define which factory to use.
-	*/
+	 * Test that MoneyFactory can get when it's define which factory to use.
+	 */
 	@Test
 	public void testGetInstance() {
 		factory = null;
@@ -28,8 +28,8 @@ public class MoneyFactoryTest {
 	}
 
 	/**
-	* Test that MoneyFactory create money by double value both coin and banknote.
-	*/
+	 * Test that MoneyFactory create money by double value both coin and banknote.
+	 */
 	@Test
 	public void testCreateMoneyDouble() {
 		assertNotNull(factory.createMoney(100));
@@ -40,8 +40,8 @@ public class MoneyFactoryTest {
 	}
 
 	/**
-	* Test that MoneyFactory create money by String value both coin and banknote.
-	*/
+	 * Test that MoneyFactory create money by String value both coin and banknote.
+	 */
 	@Test
 	public void testCreateMoneyString() {
 		assertNotNull(factory.createMoney(100));
@@ -52,8 +52,8 @@ public class MoneyFactoryTest {
 	}
 
 	/**
-	* Test that MoneyFactory can define which factory to use.
-	*/
+	 * Test that MoneyFactory can define which factory to use.
+	 */
 	@Test
 	public void testSetFactory() {
 		MoneyFactory.setFactory(new MalayMoneyFactory());
