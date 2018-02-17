@@ -1,9 +1,21 @@
 package coinpurse;
 
+/**
+ * MalayMoneyFactory creates coin or banknote with currency of 'Sen' or 'Ringgit'.
+ * 
+ * @author Kornphon Noiprasert
+ * */
 public class MalayMoneyFactory extends MoneyFactory {
-	
+	/**The serialNumber of Malay's money*/
 	private static long serialNumber = 1000000;
 	
+	/**
+	 * Accepts money value to create BankNote or Coin 
+	 * in currency of Sen or Ringgit. The value must more than 0. 
+	 * 
+	 * @param value is value of a Coin or BankNote.
+	 * @return Coin or BankNote value(object) that come from Malaysia.
+	 * */
 	@Override
 	public Valuable createMoney(double value) {
 		if(value <= 0) throw new IllegalArgumentException ("Money value must be more than 0");

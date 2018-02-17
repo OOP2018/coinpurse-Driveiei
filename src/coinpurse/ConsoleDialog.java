@@ -6,6 +6,8 @@ import java.util.Scanner;
  * User Interface for the Coin Purse. This class provides simple interactive
  * dialog for inserting and removing money to/from the purse, and displaying the
  * balance.
+ * 
+ * @author Kornphon Noiprasert
  */
 public class ConsoleDialog {
 	// default currency for this dialog
@@ -128,7 +130,11 @@ public class ConsoleDialog {
 		scanline.close();
 	}
 
-	/** Make a Coin (or BankNote or whatever) using requested value. */
+	/**
+	 *  Make a Coin (or BankNote or whatever) using requested value. 
+	 * 
+	 * @return the money with value and currency.
+	 * */
 	private Valuable makeMoney(double value) {
 		Valuable valuable = null;
 		try {
