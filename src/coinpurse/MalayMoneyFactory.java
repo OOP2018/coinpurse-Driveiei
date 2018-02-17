@@ -22,9 +22,16 @@ public class MalayMoneyFactory extends MoneyFactory {
 		if (value <= 0)
 			throw new IllegalArgumentException("Money value must be more than 0");
 		if (value == 0.05 || value == 0.10 || value == 0.20 || value == 0.50)
-			return new Coin(value * 100, "Sen");
+			return new Coin(value, "Sen");
 		if (value == 1 || value == 2 || value == 5 || value == 10 || value == 20 || value == 50 || value == 100)
 			return new BankNote(value, "Ringgit", serialNumber++);
 		throw new IllegalArgumentException(value + " Ringgit is invalid in Malaysia.");
 	}
+
+	@Override
+	public String getCurrency() {
+		return "Ringgit";
+	}
+	
+	
 }

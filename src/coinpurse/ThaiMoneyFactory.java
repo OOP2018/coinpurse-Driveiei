@@ -26,4 +26,9 @@ public class ThaiMoneyFactory extends MoneyFactory {
 			return new BankNote(value, "Baht", serialNumber++);
 		throw new IllegalArgumentException(value + "Baht is invalid in Thailand");
 	}
+	
+	@Override
+	public String getCurrency() {
+		return "Baht";
+	}
 }

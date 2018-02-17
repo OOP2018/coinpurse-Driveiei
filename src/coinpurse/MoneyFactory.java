@@ -12,6 +12,8 @@ public abstract class MoneyFactory {
 
 	public abstract Valuable createMoney(double value);
 
+	public abstract String getCurrency();
+
 	/**
 	 * Get the factory's instance.
 	 * 

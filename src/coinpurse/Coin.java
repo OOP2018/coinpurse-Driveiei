@@ -26,7 +26,9 @@ public class Coin extends Money {
 	public String toString() {
 		if ((int) this.getValue() - getValue() == 0)
 			return String.format("%.0f-%s", getValue(), getCurrency());
-		else {
+		else if(getCurrency().equals("Ringgit")){
+			return String.format("%.2f-%s", getValue()*100, getCurrency());
+		} else {
 			return String.format("%.2f-%s", getValue(), getCurrency());
 		}
 	}

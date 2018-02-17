@@ -11,7 +11,7 @@ import java.util.Scanner;
  */
 public class ConsoleDialog {
 	// default currency for this dialog
-	public static final String CURRENCY = "Baht";
+	public static final String CURRENCY = MoneyFactory.getInstance().getCurrency();
 	// use a single java.util.Scanner object for reading all input
 	private static Scanner console = new Scanner(System.in);
 	// Long prompt shown the first time
@@ -20,6 +20,7 @@ public class ConsoleDialog {
 	final String SHORT_PROMPT = "\nEnter d, w, ?, or q: ";
 
 	private MoneyFactory factory = MoneyFactory.getInstance();
+
 	// The dialog receives a Purse object by dependency injection (as parameter to
 	// constructor)
 	// so don't create a Purse here.
