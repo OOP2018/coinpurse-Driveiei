@@ -37,9 +37,8 @@ public abstract class MoneyFactory {
 		double value = 0;
 		try {
 			value = Double.parseDouble(arg);
-		} catch (IllegalArgumentException ex) {
-			System.out.println(ex.getMessage());
-			ex.printStackTrace();
+		} catch (NumberFormatException ex) {
+			throw new IllegalArgumentException(ex.getMessage());
 		}
 		return createMoney(value);
 	}
