@@ -69,6 +69,7 @@ public class Money implements Valuable {
 	 *         0(zero) if this object and other object have the same order.
 	 *         1(positive integer) if this object has order after other object.
 	 */
+	@Override
 	public int compareTo(Valuable value) {
 		if (this.getCurrency().equals(value.getCurrency())) {
 			return Double.compare(this.getValue(), value.getValue());

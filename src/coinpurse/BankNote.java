@@ -6,7 +6,7 @@ package coinpurse;
  * 
  * @author Kornphon Noiprasert
  */
-public class BankNote extends Money implements Valuable {
+public class BankNote extends Money {
 	private long serialNumber;
 
 	/**

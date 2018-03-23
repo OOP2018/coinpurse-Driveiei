@@ -8,7 +8,7 @@ package coinpurse;
 public interface Valuable extends Comparable<Valuable>{
 	
 	/**
-	 * Get the objects's value.
+	 * Get the objects's valuex
 	 * 
 	 * @return the value of this object.
 	 */

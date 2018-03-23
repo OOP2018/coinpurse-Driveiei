@@ -2,6 +2,10 @@ package coinpurse;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import coinpurse.strategy.GreedyWithdraw;
+import coinpurse.strategy.WithdrawStrategy;
+
 import java.util.Collections;
 // You will use Collections.sort() to sort the values
 import java.util.Comparator;
@@ -23,12 +27,16 @@ public class Purse {
 	 */
 	private final int capacity;
 
+	/** The strategy for withdrawing items.*/
+	private WithdrawStrategy strategy;
+	
 	/**
 	 * Create a purse with a specified capacity.
 	 * 
 	 * @param capacity is maximum number of values you can put in purse.
 	 */
 	public Purse(int capacity) {
+		strategy = new GreedyWithdraw();
 		this.capacity = capacity;
 		money = new ArrayList<Valuable>();
 	}
@@ -113,6 +121,52 @@ public class Purse {
 	 *         requested amount.
 	 */
 	public Valuable[] withdraw(Valuable amount) {
+//		if (amount.getValue() <= 0 || amount.getValue() > getBalance() || count() == 0 || amount == null) {
+//			return null;
+//		}
+//		
+//		double amountNeededToWithdraw = amount.getValue();
+//		List<Valuable> templist = new ArrayList<Valuable>();
+//		Collections.sort(money , comp);
+//		
+//		List<Valuable> calculate = new ArrayList<Valuable>();
+//		for(Valuable oneValue : money) {
+//			if(amount.getCurrency().equalsIgnoreCase(oneValue.getCurrency())) {
+//				calculate.add(oneValue);
+//			}
+//		}
+//		
+//		int size = calculate.size();
+//		for (int j = 0; j < size; j++) {
+//			for (int i = size - (j + 1); i >= 0; i--) {
+//				if (amountNeededToWithdraw >= calculate.get(i).getValue()) {
+//					amountNeededToWithdraw -= calculate.get(i).getValue();
+//					templist.add(calculate.get(i));
+//				}
+//				if (amountNeededToWithdraw == 0) {
+//					break;
+//				}
+//				if (size == 1) {
+//					amountNeededToWithdraw = amount.getValue();
+//					templist.clear();
+//					size = calculate.size();
+//				} else {
+//					size--;
+//				}
+//			}
+//		}
+//
+//		if (amountNeededToWithdraw != 0) {
+//			return null;
+//		}
+//		
+//		for (int i = 0; i < templist.size(); i++) {
+//			money.remove(templist.get(i));
+//		}
+//		
+//		Valuable[] changeToArray = new Valuable[templist.size()];
+//		return templist.toArray(changeToArray);
+	
 		if (amount.getValue() <= 0 || amount.getValue() > getBalance() || count() == 0 || amount == null) {
 			return null;
 		}
@@ -128,25 +182,7 @@ public class Purse {
 			}
 		}
 		
-		int size = calculate.size();
-		for (int j = 0; j < size; j++) {
-			for (int i = size - (j + 1); i >= 0; i--) {
-				if (amountNeededToWithdraw >= calculate.get(i).getValue()) {
-					amountNeededToWithdraw -= calculate.get(i).getValue();
-					templist.add(calculate.get(i));
-				}
-				if (amountNeededToWithdraw == 0) {
-					break;
-				}
-				if (size == 1) {
-					amountNeededToWithdraw = amount.getValue();
-					templist.clear();
-					size = calculate.size();
-				} else {
-					size--;
-				}
-			}
-		}
+		strategy.withdraw(amount, calculate);
 
 		if (amountNeededToWithdraw != 0) {
 			return null;
@@ -158,6 +194,10 @@ public class Purse {
 		
 		Valuable[] changeToArray = new Valuable[templist.size()];
 		return templist.toArray(changeToArray);
+	}
+	
+	public void setWithdrawStrategy() {
+		
 	}
 	
 	/**
