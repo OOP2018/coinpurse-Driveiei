@@ -19,7 +19,6 @@ import java.util.Comparator;
 public class Purse {
 	/** Collection of objects in the purse. */
 	private List<Valuable> money;
-	private Comparator<Valuable> comp = new ValueComparator();
 
 	/**
 	 * Capacity is maximum number of items the purse can hold. Capacity is set when
@@ -166,27 +165,13 @@ public class Purse {
 //		
 //		Valuable[] changeToArray = new Valuable[templist.size()];
 //		return templist.toArray(changeToArray);
-	
 		if (amount.getValue() <= 0 || amount.getValue() > getBalance() || count() == 0 || amount == null) {
 			return null;
 		}
 		
-		double amountNeededToWithdraw = amount.getValue();
 		List<Valuable> templist = new ArrayList<Valuable>();
-		Collections.sort(money , comp);
 		
-		List<Valuable> calculate = new ArrayList<Valuable>();
-		for(Valuable oneValue : money) {
-			if(amount.getCurrency().equalsIgnoreCase(oneValue.getCurrency())) {
-				calculate.add(oneValue);
-			}
-		}
-		
-		strategy.withdraw(amount, calculate);
-
-		if (amountNeededToWithdraw != 0) {
-			return null;
-		}
+		templist = strategy.withdraw(amount, money);
 		
 		for (int i = 0; i < templist.size(); i++) {
 			money.remove(templist.get(i));
@@ -197,7 +182,7 @@ public class Purse {
 	}
 	
 	public void setWithdrawStrategy() {
-		
+		strategy = new GreedyWithdraw();
 	}
 	
 	/**

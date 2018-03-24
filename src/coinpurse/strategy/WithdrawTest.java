@@ -33,7 +33,12 @@ public class WithdrawTest {
 		factory = MoneyFactory.getInstance();
 	}
 	
-	/** Make a coin with the default currency. To save typing "new Coin(...)" **/
+	/** 
+	 * 	Make a coin with the default currency. To save typing "new Coin(...)"
+	 * 
+	 *  @param value - the number of value to create the money
+	 *  @return the valuable of coin or banknote.
+	 *  **/
 	private Valuable makeMoney(double value) {
 		if (value < 20)
 			return new Coin(value, CURRENCY);
@@ -49,9 +54,10 @@ public class WithdrawTest {
 	}
 	
 	/**
-	 * Sum of List
+	 * Sum of valuable of the List. 
 	 * 
-	 * @param list
+	 * @param list of valuable
+	 * @return sum of the list
 	 * */
 	private double sumList(List<Valuable> list) {
 		double sum = 0;

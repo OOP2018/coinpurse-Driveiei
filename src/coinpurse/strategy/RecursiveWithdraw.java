@@ -20,18 +20,14 @@ public class RecursiveWithdraw implements WithdrawStrategy {
 	}
 
 	public boolean helper(int start, List<Valuable> money, Valuable amount) {
-		if (start >= money.size())
-			return amount.getValue() == 0;
+		if (start >= money.size()) return amount.getValue() == 0;
 		if (money.get(start).getCurrency().equals(amount.getCurrency())) {
 			if (helper(start + 1, money, new Money(amount.getValue() - money.get(start).getValue(), money.get(start).getCurrency()))) {
 				list.add(money.get(start));
 				return true;
 			}
 		}
-			if (helper(start + 1, money, amount)) {
-				return true;
-			}
-		
+			if (helper(start + 1, money, amount)) return true;
 		return false;
 	}
 

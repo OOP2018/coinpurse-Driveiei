@@ -4,19 +4,19 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-
-import coinpurse.Money;
 import coinpurse.Valuable;
 import coinpurse.ValueComparator;
 
 public class GreedyWithdraw implements WithdrawStrategy {
+
+	private Comparator<Valuable> comp = new ValueComparator();
+
 	
 	@Override
 	public List<Valuable> withdraw(Valuable amount, List<Valuable> valuables) {
 		if (amount == null || amount.getValue() <= 0 ) {
-			return null;
-		}
-		Comparator<Valuable> comp = new ValueComparator();
+		return null;
+	}
 		double amountNeededToWithdraw = amount.getValue();
 		List<Valuable> templist = new ArrayList<Valuable>();
 		Collections.sort(valuables , comp);
@@ -46,6 +46,7 @@ public class GreedyWithdraw implements WithdrawStrategy {
 				}
 			}
 		}
+
 		if (amountNeededToWithdraw != 0) {
 			return null;
 		}
