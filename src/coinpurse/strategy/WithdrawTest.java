@@ -28,7 +28,7 @@ public class WithdrawTest {
 	 * Code to run before each test. Setup the "test fixture".
 	 * */
 	public void setUp() {
-		strategy = new GreedyWithdraw();
+		strategy = new RecursiveWithdraw();
 		valuables = new ArrayList<>();
 		factory = MoneyFactory.getInstance();
 	}
@@ -138,7 +138,6 @@ public class WithdrawTest {
 		valuables.add(makeMoney(3));
 		test = strategy.withdraw(new Money(7,CURRENCY), valuables);
 		assertEquals(7,sumList(test),TOL);
-
 	}
 	
 	@Test(timeout=2000)
@@ -175,9 +174,6 @@ public class WithdrawTest {
 		assertNull(test);
 		test = strategy.withdraw(new Money(7,"Ringgit"), valuables);
 		assertEquals(7,sumList(test),TOL);
-
-		
-		
 	}
 	
 
