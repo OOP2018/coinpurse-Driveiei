@@ -14,12 +14,19 @@ import coinpurse.Money;
 import coinpurse.MoneyFactory;
 import coinpurse.Valuable;
 
+/**
+ * Test the GreedyWithdraw and RecursiveWithdraw using JUnit. This is a JUnit 4 test suite.
+ * 
+ * @author Kornphon Noiprasert
+ */
 public class WithdrawTest {
 
 	private WithdrawStrategy strategy;
 	private MoneyFactory factory;
 	private List<Valuable> valuables;
+	/** the default currency unit of money. */
 	private final String CURRENCY = "Baht";
+	/** tolerance for comparing two double values. */
 	private static final double TOL = 1.0E-6;
 
 	
@@ -67,6 +74,9 @@ public class WithdrawTest {
 		return sum;
 	}
 	
+	/**
+	 * Testing when the list had nothing to withdraw
+	 * */
 	@Test(timeout=2000)
 	public void testWithdrawNothing() {
 		Valuable coin = new Coin(5,"Baht");
@@ -74,16 +84,25 @@ public class WithdrawTest {
 		valuables.clear();
 		assertNull(strategy.withdraw(coin, valuables));
 		assertNull(strategy.withdraw(banknote, valuables));
+		assertNull(strategy.withdraw(new Money(5,CURRENCY), valuables));
 	}
 	
+	/**
+	 * Testing when withdraw null or 0 value.
+	 * */
 	@Test(timeout=2000)
 	public void testEasyWithdraw() {
+		valuables.clear();
+		valuables.add(makeMoney(5));
 		assertNull(strategy.withdraw(null, valuables));
 		assertNull(strategy.withdraw(new BankNote(0,"Baht",1000000), valuables));
 		assertNull(strategy.withdraw(new Money(0,"Baht"), valuables));
 		assertNull(strategy.withdraw(new Coin(0,"Baht"), valuables));
 	}
 	
+	/**
+	 * Testing when withdraw one thing from the list.
+	 * */
 	@Test(timeout=2000)
 	public void testSingleWithdraw() {
 		Valuable coin = new Coin(5,CURRENCY);
@@ -103,6 +122,9 @@ public class WithdrawTest {
 		assertEquals(5.0,strategy.withdraw(coin, valuables).get(0).getValue(), TOL);
 	}
 	
+	/**
+	 * Testing when withdraw multiple things from the list.
+	 * */
 	@Test(timeout=2000)
 	public void testMultiWithdraw() {		
 		valuables.clear();
@@ -146,6 +168,10 @@ public class WithdrawTest {
 		assertEquals(7,sumList(test),TOL);
 	}
 	
+	/**
+	 * Testing when withdraw fails because of exceed withdraw or 
+	 * uncorrected withdraw.
+	 * */
 	@Test(timeout=2000)
 	public void testFailWithdraw() {
 		valuables.clear();
@@ -158,6 +184,9 @@ public class WithdrawTest {
 		assertNull(test);
 	}
 	
+	/**
+	 * Testing when withdraw any kind of types of money, different currency.
+	 * */
 	@Test(timeout=2000)
 	public void testWithdrawEverything() {
 		valuables.clear();

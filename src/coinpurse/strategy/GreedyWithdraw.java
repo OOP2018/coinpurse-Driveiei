@@ -7,11 +7,25 @@ import java.util.List;
 import coinpurse.Valuable;
 import coinpurse.ValueComparator;
 
+/**
+ * A GreedyStrategy represents a withdraw method which can draw the money
+ * with normal way to withdraw.
+ * 
+ * @author Kornphon Noiprasert
+ * */
 public class GreedyWithdraw implements WithdrawStrategy {
 
 	private Comparator<Valuable> comp = new ValueComparator();
 
 	
+	/**
+	 * Withdraw the requested amount of money with fixed money. Return an array of Valuable withdrawn
+	 * from purse, or return null if cannot withdraw the amount requested.
+	 * 
+	 * @param amount is the amount to withdraw that must have the same currency with the purse.
+	 * @return List of valuable objects for money withdrawn, or null if cannot withdraw
+	 *         requested amount.
+	 */
 	@Override
 	public List<Valuable> withdraw(Valuable amount, List<Valuable> valuables) {
 		if (amount == null || amount.getValue() <= 0 ) {

@@ -123,7 +123,6 @@ public class Purse {
 //		if (amount.getValue() <= 0 || amount.getValue() > getBalance() || count() == 0 || amount == null) {
 //			return null;
 //		}
-//		
 //		double amountNeededToWithdraw = amount.getValue();
 //		List<Valuable> templist = new ArrayList<Valuable>();
 //		Collections.sort(money , comp);
@@ -134,7 +133,6 @@ public class Purse {
 //				calculate.add(oneValue);
 //			}
 //		}
-//		
 //		int size = calculate.size();
 //		for (int j = 0; j < size; j++) {
 //			for (int i = size - (j + 1); i >= 0; i--) {
@@ -154,7 +152,6 @@ public class Purse {
 //				}
 //			}
 //		}
-//
 //		if (amountNeededToWithdraw != 0) {
 //			return null;
 //		}
@@ -162,7 +159,6 @@ public class Purse {
 //		for (int i = 0; i < templist.size(); i++) {
 //			money.remove(templist.get(i));
 //		}
-//		
 //		Valuable[] changeToArray = new Valuable[templist.size()];
 //		return templist.toArray(changeToArray);
 		if (amount.getValue() <= 0 || amount.getValue() > getBalance() || count() == 0 || amount == null) {
