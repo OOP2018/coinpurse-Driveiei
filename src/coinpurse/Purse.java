@@ -2,7 +2,6 @@ package coinpurse;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import coinpurse.strategy.GreedyWithdraw;
 import coinpurse.strategy.WithdrawStrategy;
 

@@ -39,8 +39,7 @@ public class BankNote extends Money {
 	public String toString() {
 		if (this.getValue() % 1 == 0)
 			return String.format("%.0f-%s note [%d].", this.getValue(), this.getCurrency(), serialNumber);
-		else
-			return String.format("%.2f-%s note [%d].", this.getValue(), this.getCurrency(), serialNumber);
+		else return String.format("%.2f-%s note [%d].", this.getValue(), this.getCurrency(), serialNumber);
 	}
 
 }

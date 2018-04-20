@@ -2,7 +2,7 @@ package coinpurse;
 
 /**
  * Money represents production contains fixed value and currency which are
- * supports Coin and BankNote, and can order money 
+ * supports Coin and BankNote, and can order money.
  * 
  * @author Kornphon Noiprasert
  */

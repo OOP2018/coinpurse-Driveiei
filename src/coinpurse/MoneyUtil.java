@@ -85,7 +85,8 @@ public class MoneyUtil {
 	/**
 	 * Print a list of coins.
 	 * 
-	 * @param coins is list of coins with many currency values.
+	 * @param coins
+	 *            is list of coins with many currency values.
 	 */
 	public static void printCoins(List<Coin> coins) {
 		for (Coin oneCoin : coins) {
@@ -99,7 +100,7 @@ public class MoneyUtil {
 	 * @param values
 	 *            is a list of values with many currency values.
 	 */
-	public static void printValues(List<Valuable> values) {
+	public static void printValues(List<? extends Valuable> values) {
 		for (Valuable oneValue : values) {
 			System.out.println(oneValue);
 		}
@@ -108,12 +109,14 @@ public class MoneyUtil {
 	/**
 	 * Filter coins by use the specified currency value of the coins.
 	 * 
-	 * @param values is a list of values with many currency values.
-	 * @param currency is currency value.
+	 * @param values
+	 *            is a list of values with many currency values.
+	 * @param currency
+	 *            is currency value.
 	 * @return a list of values with the same currency value.
 	 */
-	public static List<Valuable> filterByCurrency(List<Valuable> values, String currency) {
-		List<Valuable> toReturn = new ArrayList<Valuable>();
+	public static <E extends Valuable> List<E> filterByCurrency(List<E> values, String currency) {
+		List<E> toReturn = new ArrayList<E>();
 		toReturn.addAll(values);
 		for (Valuable value : values) {
 			if (!value.getCurrency().equals(currency)) {
@@ -124,12 +127,39 @@ public class MoneyUtil {
 	}
 
 	/**
+	 * Return the larger argument, based on sort order, using the objects' own
+	 * compareTo method for comparing.
+	 * 
+	 * @param args
+	 *            one or more Comparable objects to compare.
+	 * @return the argument that would be last if sorted the elements.
+	 * @throws IllegalArgumentException
+	 *             if no arguments given.
+	 */
+	public static <E extends Comparable<? super E>> E max(E... args) {
+		List<E> anyPurse = new ArrayList<E>();
+		for (E anything : args) {
+			anyPurse.add(anything);
+		}
+		if(anyPurse.size() == 0) {
+			return null;
+		}
+		E max = anyPurse.get(0);
+		for (int i = 0; i < anyPurse.size() - 1; i++) {
+			if(anyPurse.get(i).compareTo(anyPurse.get(i + 1)) < 0){
+				max = anyPurse.get(i+1);
+			}
+		}
+		return max;
+	}
+
+	/**
 	 * Sort all values by using value of coin or bank to sort and print a list of
 	 * values.
 	 * 
 	 * @param values is list of coins or banknotes with many currency values.
 	 */
-	public static void sortValues(List<Valuable> values) {
+	public static void sortValues(List<? extends Valuable> values) {
 		java.util.Collections.sort(values, comp);
 		printValues(values);
 	}

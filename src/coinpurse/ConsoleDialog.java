@@ -29,14 +29,13 @@ public class ConsoleDialog {
 	/**
 	 * Initialize a new Purse dialog.
 	 * 
-	 * @param purse
-	 *            is the Purse to interact with.
+	 * @param purse is the Purse to interact with.
 	 */
 	public ConsoleDialog(Purse purse) {
 		this.purse = purse;
 	}
 
-	/** Run the user interface. */
+	/**  Run the user interface. */
 	public void run() {
 		String choice = "";
 		String prompt = FULL_PROMPT;
@@ -50,8 +49,8 @@ public class ConsoleDialog {
 			prompt = SHORT_PROMPT;
 
 			switch (choice) {
-			case "d":
-			case "deposit":
+			case "c":
+			case "checkRandom":
 				depositDialog();
 				break;
 			case "w":
