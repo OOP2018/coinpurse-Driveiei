@@ -4,9 +4,19 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * MoneyUtilTest tests method in MoneyUtil which works or not.
+ * 
+ * @author Kornphon Noiprasert
+ * */
 public class MoneyUtilTest {
+	
+	/**
+	 * Configure and start the application.
+	 * 
+	 * @param args not used
+	 */
 	public static void main(String[] args) {
-
 		String max = MoneyUtil.max("dog", "zebra", "cat");
 		System.out.println(max);
 

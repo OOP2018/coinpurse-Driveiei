@@ -3,6 +3,7 @@ package coinpurse;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.function.Predicate;
 
 /**
  * MoneyUtil class use to sort the coins or banknotes, print list of values,
@@ -85,8 +86,7 @@ public class MoneyUtil {
 	/**
 	 * Print a list of coins.
 	 * 
-	 * @param coins
-	 *            is list of coins with many currency values.
+	 * @param coins is list of coins with many currency values.
 	 */
 	public static void printCoins(List<Coin> coins) {
 		for (Coin oneCoin : coins) {
@@ -97,8 +97,7 @@ public class MoneyUtil {
 	/**
 	 * Print a list of values.
 	 * 
-	 * @param values
-	 *            is a list of values with many currency values.
+	 * @param values is a list of values with many currency values.
 	 */
 	public static void printValues(List<? extends Valuable> values) {
 		for (Valuable oneValue : values) {
@@ -109,10 +108,8 @@ public class MoneyUtil {
 	/**
 	 * Filter coins by use the specified currency value of the coins.
 	 * 
-	 * @param values
-	 *            is a list of values with many currency values.
-	 * @param currency
-	 *            is currency value.
+	 * @param values is a list of values with many currency values.
+	 * @param currency is currency value.
 	 * @return a list of values with the same currency value.
 	 */
 	public static <E extends Valuable> List<E> filterByCurrency(List<E> values, String currency) {
@@ -130,8 +127,7 @@ public class MoneyUtil {
 	 * Return the larger argument, based on sort order, using the objects' own
 	 * compareTo method for comparing.
 	 * 
-	 * @param args
-	 *            one or more Comparable objects to compare.
+	 * @param args one or more Comparable objects to compare.
 	 * @return the argument that would be last if sorted the elements.
 	 * @throws IllegalArgumentException
 	 *             if no arguments given.
